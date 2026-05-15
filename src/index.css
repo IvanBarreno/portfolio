@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+  @theme lets us define custom design tokens that Tailwind v4 picks up.
+  We can then use them as regular Tailwind classes:
+    bg-base, text-accent, border-surface, etc.
+*/
+@theme {
+  /* --- Color palette: dark-first, Cyan/Teal accent --- */
+  --color-base:       #0f172a;   /* page background */
+  --color-surface:    #1e293b;   /* cards, panels */
+  --color-border:     #334155;   /* subtle borders */
+
+  --color-text:       #94a3b8;   /* body text */
+  --color-heading:    #f1f5f9;   /* headings */
+
+  --color-accent:     #22d3ee;   /* cyan — primary accent */
+  --color-accent-dim: #0e7490;   /* darker cyan for hover states */
+
+  /* --- Syntax highlight colors (for the code-aesthetic UI) --- */
+  --color-syn-keyword:  #c084fc;  /* purple  — const, function, return */
+  --color-syn-string:   #22d3ee;  /* cyan    — "strings" */
+  --color-syn-property: #f1f5f9;  /* white   — object keys */
+  --color-syn-comment:  #475569;  /* muted   — // comments */
+  --color-syn-number:   #fb923c;  /* orange  — numbers, booleans */
+
+  /* --- Typography --- */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-family: var(--font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling to match the dark theme */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #22d3ee; }
