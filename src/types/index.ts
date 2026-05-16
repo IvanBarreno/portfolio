@@ -3,6 +3,7 @@ export interface Project {
   title: string
   description: string
   tags: string[]
+  category: 'Full Stack' | 'Frontend' | 'Backend' | 'Data Science'
   repoUrl: string
   demoUrl: string | null
   thumbnail: string | null
