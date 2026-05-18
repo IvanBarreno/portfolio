@@ -3,8 +3,8 @@ export interface Project {
   title: string
   description: string
   tags: string[]
-  category: 'Full Stack' | 'Frontend' | 'Backend' | 'Data Science'
-  repoUrl: string
+  categories: Array<'Full Stack' | 'Frontend' | 'Backend' | 'Data Science'>
+  repoUrl: string | null
   demoUrl: string | null
   thumbnail: string | null
 }

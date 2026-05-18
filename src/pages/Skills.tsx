@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { skillsByCategory, categories, type SkillEntry } from '../data/skills'
+import FadeIn from '../components/FadeIn'
 
 // ─── Expertise dots — filled = reached, gray = not yet ──────────────────────
 function ExpertiseDots({ level }: { level: number }) {
@@ -48,56 +49,59 @@ export default function Skills() {
   return (
     <div className="space-y-10">
 
-      {/* ── Header ── */}
-      <div className="space-y-2">
-        <p className="font-mono text-sm text-syn-comment">{'/** skills.ts */'}</p>
-        <h1 className="text-4xl font-bold text-heading">Skills</h1>
-        <p className="font-mono text-sm">
-          <span className="text-syn-keyword">const </span>
-          <span className="text-heading">skills</span>
-          <span className="text-text"> = {'{'} </span>
-          {categories.map((cat, i) => (
-            <span key={cat}>
-              <span className="text-syn-property">{cat}</span>
-              <span className="text-text">{i < categories.length - 1 ? ', ' : ' '}</span>
-            </span>
-          ))}
-          <span className="text-text">{'}'}</span>
-        </p>
-      </div>
+      <FadeIn>
+        <div className="space-y-2">
+          <p className="font-mono text-sm text-syn-comment">{'/** skills.ts */'}</p>
+          <h1 className="text-4xl font-bold text-heading">Skills</h1>
+          <p className="font-mono text-sm">
+            <span className="text-syn-keyword">const </span>
+            <span className="text-heading">skills</span>
+            <span className="text-text"> = {'{'} </span>
+            {categories.map((cat, i) => (
+              <span key={cat}>
+                <span className="text-syn-property">{cat}</span>
+                <span className="text-text">{i < categories.length - 1 ? ', ' : ' '}</span>
+              </span>
+            ))}
+            <span className="text-text">{'}'}</span>
+          </p>
+        </div>
+      </FadeIn>
 
-      {/* ── Tabs — styled as object-key selectors ── */}
-      <div className="border-b border-border overflow-x-auto">
-        <div className="flex gap-0 min-w-max">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-4 py-3 font-mono text-sm border-b-2 transition-colors whitespace-nowrap ${
-                active === cat
-                  ? 'border-accent text-accent'
-                  : 'border-transparent text-text hover:text-heading'
-              }`}
-            >
-              {/* Each tab label looks like: skills.languages */}
-              <span className="text-syn-comment">skills.</span>
-              <span>{cat}</span>
-            </button>
+      <FadeIn delay={0.1}>
+        <div className="border-b border-border overflow-x-auto">
+          <div className="flex gap-0 min-w-max">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActive(cat)}
+                className={`px-4 py-3 font-mono text-sm border-b-2 transition-colors whitespace-nowrap ${
+                  active === cat
+                    ? 'border-accent text-accent'
+                    : 'border-transparent text-text hover:text-heading'
+                }`}
+              >
+                <span className="text-syn-comment">skills.</span>
+                <span>{cat}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={0.15}>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+          {skillsByCategory[active].map(skill => (
+            <SkillCard key={skill.name} {...skill} />
           ))}
         </div>
-      </div>
+      </FadeIn>
 
-      {/* ── Skills grid for active category ── */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-        {skillsByCategory[active].map(skill => (
-          <SkillCard key={skill.name} {...skill} />
-        ))}
-      </div>
-
-      {/* ── Footer note ── */}
-      <p className="font-mono text-xs text-syn-comment">
-        {'// skills without a logo show their initials — same knowledge, just no devicon yet'}
-      </p>
+      <FadeIn delay={0.2}>
+        <p className="font-mono text-xs text-syn-comment">
+          {'// skills without a logo show their initials — same knowledge, just no devicon yet'}
+        </p>
+      </FadeIn>
 
     </div>
   )

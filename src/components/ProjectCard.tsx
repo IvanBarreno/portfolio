@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Lock } from 'lucide-react'
 import { LuGithub } from 'react-icons/lu'
 import Tag from './Tag'
 import Button from './Button'
@@ -77,9 +77,15 @@ export default function ProjectCard({ title, description, tags, repoUrl, demoUrl
 
         {/* Action buttons — pushed to bottom */}
         <div className="flex gap-2 mt-auto pt-1">
-          <Button href={repoUrl} variant="outline" className="flex-1 justify-center text-xs px-3 py-2">
-            <LuGithub size={14} /> GitHub
-          </Button>
+          {repoUrl ? (
+            <Button href={repoUrl} variant="outline" className="flex-1 justify-center text-xs px-3 py-2">
+              <LuGithub size={14} /> GitHub
+            </Button>
+          ) : (
+            <span className="flex flex-1 items-center justify-center gap-1.5 text-xs font-mono text-syn-comment px-3 py-2 rounded border border-border">
+              <Lock size={12} /> private
+            </span>
+          )}
           {demoUrl && (
             <Button href={demoUrl} variant="primary" className="flex-1 justify-center text-xs px-3 py-2">
               <ExternalLink size={14} /> Live Demo
