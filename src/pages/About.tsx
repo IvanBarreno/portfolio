@@ -6,41 +6,43 @@ import { Mail } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
 
 // ─── Certifications — add/remove entries here ────────────────────────────────
+const BASE = import.meta.env.BASE_URL
+
 const certifications = [
   {
     title: 'AWS Academy Graduate — Introduction to Cloud',
     issuer: 'Amazon Web Services',
-    file: '/certifications/AWS_Academy_Graduate_Introduction_Cloud.pdf',
+    file: `${BASE}certifications/AWS_Academy_Graduate_Introduction_Cloud.pdf`,
   },
   {
     title: 'Pentaho — 3 Steps to Better Data',
     issuer: 'Udemy',
-    file: '/certifications/UC-Pentaho-3Steps.jpg',
+    file: `${BASE}certifications/UC-Pentaho-3Steps.jpg`,
   },
   {
     title: 'Scrum Master',
     issuer: 'Udemy',
-    file: '/certifications/UC-Scrum Master.jpg',
+    file: `${BASE}certifications/UC-Scrum Master.jpg`,
   },
   {
     title: 'Algoritmos con Python',
     issuer: 'Online Course',
-    file: '/certifications/diploma-algoritmos-python.pdf',
+    file: `${BASE}certifications/diploma-algoritmos-python.pdf`,
   },
   {
     title: 'Introducción a Laravel',
     issuer: 'Online Course',
-    file: '/certifications/diploma-intro-laravel-2020.pdf',
+    file: `${BASE}certifications/diploma-intro-laravel-2020.pdf`,
   },
   {
     title: 'Python Básico',
     issuer: 'Online Course',
-    file: '/certifications/diploma-python-basico.pdf',
+    file: `${BASE}certifications/diploma-python-basico.pdf`,
   },
   {
     title: 'Python — CS',
     issuer: 'Online Course',
-    file: '/certifications/diploma-python-cs.pdf',
+    file: `${BASE}certifications/diploma-python-cs.pdf`,
   },
 ]
 
@@ -81,7 +83,7 @@ export default function About() {
 
             {/* Profile photo */}
             <img
-              src="/ivan-photo.jpg"
+              src={`${BASE}ivan-photo.jpg`}
               alt="José Iván Barreno Bulux"
               className="aspect-square w-72 md:w-full mx-auto rounded-xl border border-border object-cover"
             />
@@ -130,7 +132,7 @@ export default function About() {
 
             {/* Resume — preview + download */}
             <button
-              onClick={() => setSelected({ title: 'Resume', issuer: 'José Iván Barreno Bulux', file: '/CV-Jose-Barreno-2026-v3.pdf' })}
+              onClick={() => setSelected({ title: 'Resume', issuer: 'José Iván Barreno Bulux', file: `${BASE}CV-Jose-Barreno-2026-v3.pdf` })}
               className="glow-hover w-full flex items-center gap-3 p-3 rounded-lg border border-accent/40 bg-accent/5
                 hover:border-accent hover:bg-accent/10 transition-colors group text-left"
             >
@@ -149,7 +151,7 @@ export default function About() {
               <Download size={14} className="text-accent shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
             </button>
             <a
-              href="/CV-Jose-Barreno-2026-v3.pdf"
+              href={`${BASE}CV-Jose-Barreno-2026-v3.pdf`}
               download
               className="font-mono text-xs text-syn-comment hover:text-accent transition-colors flex items-center gap-1"
             >
