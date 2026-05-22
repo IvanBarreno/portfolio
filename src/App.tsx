@@ -1,4 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 import PageLayout from './components/PageLayout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -11,6 +18,7 @@ import Contact from './pages/Contact'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/*
           Layout route: no path — just wraps children with PageLayout.

@@ -1,5 +1,5 @@
-import { Mail } from 'lucide-react';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
+import { Mail } from 'lucide-react'
+import { LuGithub, LuLinkedin } from 'react-icons/lu'
 
 export default function Footer() {
   return (
@@ -20,19 +20,19 @@ export default function Footer() {
             aria-label="GitHub"
             className="text-text hover:text-accent transition-colors"
           >
-            <FiGithub size={18} />
+            <LuGithub size={18} />
           </a>
           <a
-            href="https://linkedin.com/in/"
+            href="https://www.linkedin.com/in/jos%C3%A9-iv%C3%A1n-barreno-bulux-a64b9493/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="text-text hover:text-accent transition-colors"
           >
-            <FiLinkedin size={18} />
+            <LuLinkedin size={18} />
           </a>
           <a
-            href="mailto:"
+            href="mailto:jivan9657@gmail.com"
             aria-label="Email"
             className="text-text hover:text-accent transition-colors"
           >
