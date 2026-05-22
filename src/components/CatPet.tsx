@@ -51,7 +51,7 @@ export default function CatPet() {
         left: pos,
         width: FRAME_W,
         height: FRAME_H,
-        backgroundImage: 'url(/cat-sprite.jpg)',
+        backgroundImage: `url(${import.meta.env.BASE_URL}cat-sprite.jpg)`,
         backgroundPosition: `-${frame * FRAME_W}px 0px`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: `${FRAME_COUNT * FRAME_W}px ${FRAME_H}px`,
