@@ -19,7 +19,7 @@ const topSkills = [
 // ─── Code-aesthetic hero block ──────────────────────────────────────────────
 function CodeHero() {
   return (
-    <div className="rounded-lg border border-border bg-surface overflow-hidden font-mono text-sm shadow-xl">
+    <div className="glow-hover rounded-lg border border-accent/20 bg-surface overflow-hidden font-mono text-sm shadow-xl shadow-accent/5 ring-1 ring-accent/10">
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-base">
         <span className="w-3 h-3 rounded-full bg-red-500/70" />
         <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -84,11 +84,11 @@ function CodeHero() {
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
-    <div className="space-y-24">
+    <div className="relative space-y-24">
 
       {/* ── Hero ── */}
       <FadeIn>
-        <section className="grid md:grid-cols-2 gap-12 items-center py-8">
+        <section className="relative grid md:grid-cols-2 gap-12 items-center py-8">
           <div className="space-y-6">
             <span className="font-mono text-sm text-accent">
               {'// Systems Engineer - Full Stack Developer - Data Scientist'}
@@ -113,6 +113,9 @@ export default function Home() {
           <CodeHero />
         </section>
       </FadeIn>
+
+      {/* ── Section divider ── */}
+      <div className="pointer-events-none h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent -my-12" />
 
       {/* ── About preview ── */}
       <FadeIn delay={0.05}>
@@ -146,7 +149,7 @@ export default function Home() {
             {topSkills.map(({ name, icon }) => (
               <div
                 key={name}
-                className="flex flex-col items-center gap-2 p-3 rounded-lg
+                className="glow-hover flex flex-col items-center gap-2 p-3 rounded-lg
                   border border-border bg-surface hover:border-accent/50
                   transition-colors group"
               >

@@ -21,7 +21,7 @@ function ExpertiseDots({ level }: { level: number }) {
 // ─── Single skill card ───────────────────────────────────────────────────────
 function SkillCard({ name, icon, level }: SkillEntry) {
   return (
-    <div className="flex flex-col items-center gap-2 p-4 rounded-lg
+    <div className="glow-hover flex flex-col items-center gap-2 p-4 rounded-lg
       border border-border bg-surface hover:border-accent/50
       transition-colors group cursor-default"
     >

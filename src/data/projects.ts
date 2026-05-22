@@ -1,6 +1,13 @@
 import type { Project } from '../types'
 
-export const projects: Project[] = [
+// Load all project descriptions/walkthroughs as raw strings - bundled at build time by Vite
+const rawExplanations = import.meta.glob('./projects_explanations/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+const projectsData: Project[] = [
   {
     slug: 'portfolio',
     title: 'Personal Portfolio',
@@ -10,6 +17,7 @@ export const projects: Project[] = [
     categories: ['Frontend'],
     repoUrl: 'https://github.com/IvanBarreno/portfolio',
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
@@ -21,6 +29,7 @@ export const projects: Project[] = [
     categories: ['Frontend'],
     repoUrl: 'https://github.com/IvanBarreno/chucknorris',
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
@@ -32,6 +41,7 @@ export const projects: Project[] = [
     categories: ['Full Stack', 'Frontend', 'Backend'],
     repoUrl: 'https://github.com/JIvanBarreno/FAW_proyectoBack',
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
@@ -43,6 +53,7 @@ export const projects: Project[] = [
     categories: ['Full Stack', 'Frontend', 'Backend'],
     repoUrl: 'https://github.com/JIvanBarreno/cc6_proyecto_db_distribuida',
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
@@ -54,53 +65,68 @@ export const projects: Project[] = [
     categories: ['Frontend', 'Backend'],
     repoUrl: 'https://github.com/JIvanBarreno/cc5_proyecto',
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
     slug: 'finify-app',
-    title: 'Co-Working FinifyAPP',
+    title: 'Finify — Rotating Savings Ledger',
     description:
-      'An academic project involving to solve a financial problems by providing a platform to manage expenses, bills, income and more. And provide ways to save money like making deals with a group of people to create like a pool of money and by turns all can get the money for an specific purpose (Cuchubal).',
+      'A full-stack personal finance and rotating savings circles ledger (Cuchubal/ROSCA) application. Built with Angular 18, NgRx state management, Node.js/Express, and a transactional MySQL backend featuring automated stored procedure calculations.',
     tags: ['Full Stack', 'Backend', 'REST API'],
     categories: ['Full Stack'],
     repoUrl: null,
     demoUrl: null,
+    description_md_url: './projects_explanations/PORTFOLIO_WALKTHROUGH.md',
     thumbnail: null,
   },
   {
     slug: 'wfm-management',
-    title: 'WFM Management',
+    title: 'WFM Control Center',
     description:
-      'An administrative platform to manage data uploads to a database, it provides also forms like QA evaluations for processes, one on one feedback, a section to have centraliced list of Dashboards and task assignment.',
+      'An enterprise-grade workforce management and operations suite featuring automated overtime auditing, quality assurance scorecard metrics, BI dashboards, and role-based authorization gates. Built with PHP (PDO), MySQL, and asynchronous jQuery APIs.',
     tags: ['Backend', 'JQuery', 'Bootstrap'],
     categories: ['Backend', 'Frontend'],
     repoUrl: null,
     demoUrl: null,
+    description_md_url: './projects_explanations/WFM_WALKTHROUGH.md',
     thumbnail: null,
   },
   {
     slug: 'coworking-digital',
     title: 'Co-Working Digital Transformation App',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+      'A Centralized management platform for manage Employee Roster, Schedules and other internal processes. Also provide a module to create dynamic forms to collect data from users for specific purposes or to make a cuestionaries.',
     tags: ['Full Stack', 'Frontend', 'Backend'],
     categories: ['Full Stack', 'Frontend', 'Backend'],
     repoUrl: null,
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
   {
     slug: 'etl-medallion',
     title: 'ETL Medallion Data Pipeline',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    tags: ['Python', 'ETL', 'Pandas', 'Data Science'],
+      'An ETL process to extract, transform and load data from differents sources to a centralized database. Implemented using Python with Pandas and Spark, some of those process were done using Pentaho Data Integration.',
+    tags: ['Python', 'ETL', 'Pandas', 'Data Science', 'Pentaho', 'Spark'],
     categories: ['Data Science'],
     repoUrl: null,
     demoUrl: null,
+    description_md_url: null,
     thumbnail: null,
   },
 ]
+
+export const projects: Project[] = projectsData.map(p => {
+  if (p.description_md_url && rawExplanations[p.description_md_url]) {
+    return {
+      ...p,
+      content_md: rawExplanations[p.description_md_url],
+    }
+  }
+  return p
+})
 
 export const categories = ['All', 'Full Stack', 'Frontend', 'Backend', 'Data Science'] as const
 export type FilterCategory = typeof categories[number]

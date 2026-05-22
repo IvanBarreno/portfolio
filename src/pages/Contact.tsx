@@ -38,7 +38,7 @@ export default function Contact() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus('sending')
 
@@ -175,7 +175,7 @@ export default function Contact() {
                   href={href}
                   target={href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 p-3 rounded-lg border border-border bg-surface
+                  className="glow-hover flex items-start gap-3 p-3 rounded-lg border border-border bg-surface
                     hover:border-accent/40 transition-colors group"
                 >
                   <Icon size={18} className="text-accent mt-0.5 shrink-0" />

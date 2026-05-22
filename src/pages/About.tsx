@@ -131,7 +131,7 @@ export default function About() {
             {/* Resume — preview + download */}
             <button
               onClick={() => setSelected({ title: 'Resume', issuer: 'José Iván Barreno Bulux', file: '/CV-Jose-Barreno-2026-v3.pdf' })}
-              className="w-full flex items-center gap-3 p-3 rounded-lg border border-accent/40 bg-accent/5
+              className="glow-hover w-full flex items-center gap-3 p-3 rounded-lg border border-accent/40 bg-accent/5
                 hover:border-accent hover:bg-accent/10 transition-colors group text-left"
             >
               {/* PDF icon */}
@@ -160,7 +160,7 @@ export default function About() {
 
           {/* Right: bio styled as a multi-line code comment */}
           <div className="md:col-span-2">
-            <div className="rounded-lg border border-border bg-surface overflow-hidden font-mono text-sm">
+            <div className="glow-hover rounded-lg border border-border bg-surface overflow-hidden font-mono text-sm">
 
               {/* Window chrome */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-base">
@@ -259,7 +259,7 @@ export default function About() {
           </h2>
 
           {/* Code-aesthetic: education displayed as a TS array */}
-          <div className="rounded-lg border border-border bg-surface overflow-hidden font-mono text-sm">
+          <div className="glow-hover rounded-lg border border-border bg-surface overflow-hidden font-mono text-sm">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-base">
               <span className="w-3 h-3 rounded-full bg-red-500/70" />
               <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -335,7 +335,7 @@ export default function About() {
                 <button
                   key={cert.file}
                   onClick={() => setSelected(cert)}
-                  className="flex items-center gap-3 p-4 rounded-lg border border-border bg-surface
+                  className="glow-hover flex items-center gap-3 p-4 rounded-lg border border-border bg-surface
                     hover:border-accent/40 hover:bg-accent/5 transition-colors group text-left"
                 >
                   {/* Left: icon + text */}

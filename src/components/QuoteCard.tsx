@@ -6,7 +6,7 @@ export default function QuoteCard() {
   const { quote, loading, refresh } = useQuote()
 
   return (
-    <div className="rounded-lg border border-border bg-surface p-6 relative overflow-hidden">
+    <div className="glow-hover rounded-lg border border-border bg-surface p-6 relative overflow-hidden">
       {/* Decorative quote mark */}
       <span className="font-mono text-4xl text-accent/20 select-none leading-none">//</span>
 

@@ -6,7 +6,9 @@ export interface Project {
   categories: Array<'Full Stack' | 'Frontend' | 'Backend' | 'Data Science'>
   repoUrl: string | null
   demoUrl: string | null
+  description_md_url: string | null
   thumbnail: string | null
+  content_md?: string
 }
 
 export interface Note {
