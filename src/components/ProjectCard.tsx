@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Lock } from 'lucide-react'
 import { LuGithub } from 'react-icons/lu'
 import Tag from './Tag'
 import Button from './Button'
@@ -44,10 +44,23 @@ function CodeThumbnail({ title, tags }: { title: string; tags: string[] }) {
   )
 }
 
+interface ProjectCardProps extends Project {
+  onViewWalkthrough?: () => void
+}
+
 // ─── Project card ─────────────────────────────────────────────────────────────
-export default function ProjectCard({ title, description, tags, repoUrl, demoUrl, thumbnail }: Project) {
+export default function ProjectCard({
+  title,
+  description,
+  tags,
+  repoUrl,
+  demoUrl,
+  thumbnail,
+  description_md_url,
+  onViewWalkthrough,
+}: ProjectCardProps) {
   return (
-    <div className="flex flex-col rounded-lg border border-border bg-surface
+    <div className="glow-hover flex flex-col rounded-lg border border-border bg-surface
       hover:border-accent/40 transition-colors overflow-hidden"
     >
       {/* Thumbnail or code placeholder */}
@@ -77,9 +90,19 @@ export default function ProjectCard({ title, description, tags, repoUrl, demoUrl
 
         {/* Action buttons — pushed to bottom */}
         <div className="flex gap-2 mt-auto pt-1">
-          <Button href={repoUrl} variant="outline" className="flex-1 justify-center text-xs px-3 py-2">
-            <LuGithub size={14} /> GitHub
-          </Button>
+          {repoUrl ? (
+            <Button href={repoUrl} variant="outline" className="flex-1 justify-center text-xs px-3 py-2">
+              <LuGithub size={14} /> GitHub
+            </Button>
+          ) : description_md_url && onViewWalkthrough ? (
+            <Button onClick={onViewWalkthrough} variant="outline" className="flex-1 justify-center text-xs px-3 py-2">
+              <Lock size={12} /> Read Walkthrough
+            </Button>
+          ) : (
+            <span className="flex flex-1 items-center justify-center gap-1.5 text-xs font-mono text-syn-comment px-3 py-2 rounded border border-border">
+              <Lock size={12} /> private
+            </span>
+          )}
           {demoUrl && (
             <Button href={demoUrl} variant="primary" className="flex-1 justify-center text-xs px-3 py-2">
               <ExternalLink size={14} /> Live Demo

@@ -9,6 +9,7 @@ interface ButtonProps {
   type?: 'button' | 'submit'
   className?: string
   disabled?: boolean
+  download?: boolean
 }
 
 const base = 'inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer'
@@ -28,6 +29,7 @@ export default function Button({
   type = 'button',
   className = '',
   disabled = false,
+  download = false,
 }: ButtonProps) {
   const classes = `${base} ${variants[variant]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`
 
@@ -37,7 +39,7 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} download={download || undefined}>
         {children}
       </a>
     )

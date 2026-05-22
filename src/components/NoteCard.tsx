@@ -9,7 +9,7 @@ export default function NoteCard({ slug, category, title, excerpt, readTime }: N
   return (
     <Link
       to={`/notes/${slug}`}
-      className="flex flex-col rounded-lg border border-border bg-surface
+      className="glow-hover flex flex-col rounded-lg border border-border bg-surface
         hover:border-accent/40 transition-colors overflow-hidden group"
     >
       {/* Fake import header */}
