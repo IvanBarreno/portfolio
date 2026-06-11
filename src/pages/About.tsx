@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MapPin, Download, GraduationCap, Award, ExternalLink, X } from 'lucide-react'
 import { siteConfig } from '../data/config'
 import { LuGithub, LuLinkedin } from 'react-icons/lu'
@@ -22,7 +22,7 @@ const certifications = [
   {
     title: 'Scrum Master',
     issuer: 'Udemy',
-    file: `${BASE}certifications/UC-Scrum Master.jpg`,
+    file: `${BASE}certifications/UC-Scrum-Master.jpg`,
   },
   {
     title: 'Algoritmos con Python',
@@ -50,7 +50,7 @@ const certifications = [
 const education = [
   {
     degree: 'Systems Engineering',
-    institution: 'Universidad GALIELO',
+    institution: 'Universidad GALILEO',
     period: '2023 — present',
     status: 'in_progress' as const,
     notes: 'Interested in AI postgrad & Software Design',
@@ -61,6 +61,20 @@ const education = [
 export default function About() {
   const [selected, setSelected] = useState<typeof certifications[number] | null>(null)
   const isPdf = selected?.file.endsWith('.pdf')
+
+  // Close modal on Escape + lock body scroll while it's open
+  useEffect(() => {
+    if (!selected) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelected(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = 'unset'
+    }
+  }, [selected])
 
   return (
     <div className="space-y-20">
@@ -132,7 +146,7 @@ export default function About() {
 
             {/* Resume — preview + download */}
             <button
-              onClick={() => setSelected({ title: 'Resume', issuer: 'José Iván Barreno Bulux', file: `${BASE}CV-Jose-Barreno-2026-v3.pdf` })}
+              onClick={() => setSelected({ title: 'Resume', issuer: 'José Iván Barreno Bulux', file: `${BASE}${siteConfig.cvFile}` })}
               className="glow-hover w-full flex items-center gap-3 p-3 rounded-lg border border-accent/40 bg-accent/5
                 hover:border-accent hover:bg-accent/10 transition-colors group text-left"
             >
@@ -146,12 +160,12 @@ export default function About() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-accent leading-snug">View Resume</p>
-                <p className="font-mono text-xs text-syn-comment">CV-Jose-Barreno-2026-v3.pdf</p>
+                <p className="font-mono text-xs text-syn-comment">{siteConfig.cvFile}</p>
               </div>
               <Download size={14} className="text-accent shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
             </button>
             <a
-              href={`${BASE}CV-Jose-Barreno-2026-v3.pdf`}
+              href={`${BASE}${siteConfig.cvFile}`}
               download
               className="font-mono text-xs text-syn-comment hover:text-accent transition-colors flex items-center gap-1"
             >
@@ -406,11 +420,27 @@ export default function About() {
             {/* Content */}
             <div className="flex-1 overflow-auto">
               {isPdf ? (
-                <embed
-                  src={selected.file}
+                // <object> (unlike <embed>) renders its children as a fallback
+                // on browsers without inline PDF support, e.g. iOS Safari
+                <object
+                  data={selected.file}
                   type="application/pdf"
                   className="w-full h-[75vh]"
-                />
+                >
+                  <div className="flex flex-col items-center justify-center gap-3 h-[40vh] p-6 text-center">
+                    <p className="text-sm text-text">
+                      Your browser can't preview PDFs inline.
+                    </p>
+                    <a
+                      href={selected.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-sm text-accent hover:underline flex items-center gap-1.5"
+                    >
+                      <ExternalLink size={14} /> Open the PDF in a new tab
+                    </a>
+                  </div>
+                </object>
               ) : (
                 <img
                   src={selected.file}

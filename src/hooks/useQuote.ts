@@ -15,8 +15,9 @@ export function useQuote() {
   const [quote, setQuote] = useState<Quote | null>(null)
   const [loading, setLoading] = useState(true)
 
+  // No synchronous setState here — `loading` already starts as true, and
+  // `refresh` flips it back before re-fetching. Keeps the effect cascade-free.
   const fetchQuote = useCallback(async () => {
-    setLoading(true)
     try {
       // dummyjson.com supports HTTPS + CORS — works in production on GitHub Pages
       const res = await fetch('https://dummyjson.com/quotes/random')
@@ -32,7 +33,15 @@ export function useQuote() {
     }
   }, [])
 
+  const refresh = useCallback(() => {
+    setLoading(true)
+    return fetchQuote()
+  }, [fetchQuote])
+
+  // Fetching once on mount is a legitimate effect (syncing with an external
+  // API); all setState calls happen after the fetch resolves, not synchronously.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchQuote() }, [fetchQuote])
 
-  return { quote, loading, refresh: fetchQuote }
+  return { quote, loading, refresh }
 }

@@ -96,7 +96,7 @@ const projectsData: Project[] = [
     slug: 'coworking-digital',
     title: 'Co-Working Digital Transformation App',
     description:
-      'A Centralized management platform for manage Employee Roster, Schedules and other internal processes. Also provide a module to create dynamic forms to collect data from users for specific purposes or to make a cuestionaries.',
+      'A centralized management platform for employee rosters, schedules, and other internal processes. Also provides a module for building dynamic forms to collect data from users for specific purposes or questionnaires.',
     tags: ['Full Stack', 'Frontend', 'Backend'],
     categories: ['Full Stack', 'Frontend', 'Backend'],
     repoUrl: null,
@@ -108,7 +108,7 @@ const projectsData: Project[] = [
     slug: 'etl-medallion',
     title: 'ETL Medallion Data Pipeline',
     description:
-      'An ETL process to extract, transform and load data from differents sources to a centralized database. Implemented using Python with Pandas and Spark, some of those process were done using Pentaho Data Integration.',
+      'An ETL process to extract, transform, and load data from different sources into a centralized database. Implemented in Python with Pandas and Spark; some processes were built with Pentaho Data Integration.',
     tags: ['Python', 'ETL', 'Pandas', 'Data Science', 'Pentaho', 'Spark'],
     categories: ['Data Science'],
     repoUrl: null,

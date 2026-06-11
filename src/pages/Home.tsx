@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import QuoteCard from '../components/QuoteCard'
 import FadeIn from '../components/FadeIn'
@@ -134,6 +135,43 @@ export default function Home() {
           </Button>
         </section>
       </FadeIn>
+
+      {/* ── Projects shortcut — terminal-style command that navigates on click ── */}
+      <FadeIn delay={0.05}>
+        <section className="space-y-4">
+          <p className="font-mono text-sm text-syn-comment">{'/** projects */'}</p>
+          <Link
+            to="/projects"
+            className="glow-hover block rounded-lg border border-border bg-surface overflow-hidden
+              font-mono text-sm hover:border-accent/50 transition-colors group"
+          >
+            {/* Window chrome */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-base">
+              <span className="w-3 h-3 rounded-full bg-red-500/70" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+              <span className="w-3 h-3 rounded-full bg-green-500/70" />
+              <span className="ml-3 text-syn-comment text-xs">zsh — portfolio</span>
+            </div>
+
+            {/* Prompt line */}
+            <div className="flex items-center gap-3 p-5">
+              <span className="text-accent">➜</span>
+              <span className="text-heading">~/portfolio</span>
+              <span className="text-text">
+                cd <span className="text-syn-string">./projects</span>
+              </span>
+              {/* Blinking cursor */}
+              <span className="w-2 h-4 bg-accent/80 animate-pulse" />
+              <span className="ml-auto hidden sm:flex items-center gap-2 text-xs text-syn-comment
+                group-hover:text-accent transition-colors">
+                press to run
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
+          </Link>
+        </section>
+      </FadeIn>
+
 
       {/* ── Skills preview ── */}
       <FadeIn delay={0.05}>

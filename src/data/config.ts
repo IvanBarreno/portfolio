@@ -19,4 +19,9 @@ export const siteConfig = {
    */
   status,
   statusLabel: statusLabels[status],
+  /**
+   * Resume file inside /public. Stable name (no version/year) so any
+   * shared or bookmarked link keeps working when the PDF is replaced.
+   */
+  cvFile: 'CV-Jose-Barreno.pdf',
 }
