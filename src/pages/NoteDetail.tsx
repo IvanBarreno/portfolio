@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -9,9 +8,7 @@ import FadeIn from '../components/FadeIn'
 export default function NoteDetail() {
   const { slug } = useParams<{ slug: string }>()
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [slug])
+  // Scrolling to top on slug change is handled globally by <ScrollToTop /> in App.tsx
 
   const note = slug ? notesBySlug[slug] : undefined
 

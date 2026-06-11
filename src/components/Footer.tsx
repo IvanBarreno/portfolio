@@ -8,7 +8,7 @@ export default function Footer() {
 
         {/* Code-style comment */}
         <p className="font-mono text-sm text-syn-comment">
-          {'// built with React + Tailwind — José Iván Barreno Bulux © 2025'}
+          {`// built with React + Tailwind — José Iván Barreno Bulux © ${new Date().getFullYear()}`}
         </p>
 
         {/* Social links */}
