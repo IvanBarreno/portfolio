@@ -101,7 +101,7 @@ export default function Projects() {
         <p className="font-mono text-xs text-syn-comment">
           {'// Just a little reminder: you can\'t give up on your dreams :D'}
           <br />
-          {'// Your the best keep it up.'}
+          {'// You\'re the best, keep it up.'}
           <br />
           {'// ******** Don\'t forget to turn off the EC2 instance!!!!'}
         </p>

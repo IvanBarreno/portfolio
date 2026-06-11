@@ -9,9 +9,8 @@ function ExpertiseDots({ level }: { level: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <span
           key={i}
-          className={`w-1.5 h-1.5 rounded-full transition-colors ${
-            i < level ? 'bg-accent' : 'bg-border'
-          }`}
+          className={`w-1.5 h-1.5 rounded-full transition-colors ${i < level ? 'bg-accent' : 'bg-border'
+            }`}
         />
       ))}
     </div>
@@ -45,6 +44,7 @@ function SkillCard({ name, icon, level }: SkillEntry) {
 // ─── Skills page ─────────────────────────────────────────────────────────────
 export default function Skills() {
   const [active, setActive] = useState(categories[0])
+  const visible = skillsByCategory[active]
 
   return (
     <div className="space-y-10">
@@ -56,18 +56,19 @@ export default function Skills() {
           <p className="font-mono text-sm">
             <span className="text-syn-keyword">const </span>
             <span className="text-heading">skills</span>
-            <span className="text-text"> = {'{'} </span>
-            {categories.map((cat, i) => (
-              <span key={cat}>
-                <span className="text-syn-property">{cat}</span>
-                <span className="text-text">{i < categories.length - 1 ? ', ' : ' '}</span>
-              </span>
-            ))}
-            <span className="text-text">{'}'}</span>
+            <span className="text-text"> = </span>
+            <span className="text-syn-string">data</span>
+            <span className="text-text">.filter(s {'=> '}s.category</span>
+            <span className="text-text"> === </span>
+            <span className="text-syn-string">"{active}"</span>
+            <span className="text-text">)</span>
+            <span className="text-syn-comment ml-3">
+              {'// '}
+              {visible.length} {visible.length === 1 ? 'skill' : 'skills'}
+            </span>
           </p>
         </div>
       </FadeIn>
-
       <FadeIn delay={0.1}>
         <div className="border-b border-border overflow-x-auto">
           <div className="flex gap-0 min-w-max">
@@ -75,11 +76,10 @@ export default function Skills() {
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-4 py-3 font-mono text-sm border-b-2 transition-colors whitespace-nowrap ${
-                  active === cat
+                className={`px-4 py-3 font-mono text-sm border-b-2 transition-colors whitespace-nowrap ${active === cat
                     ? 'border-accent text-accent'
                     : 'border-transparent text-text hover:text-heading'
-                }`}
+                  }`}
               >
                 <span className="text-syn-comment">skills.</span>
                 <span>{cat}</span>
@@ -91,7 +91,7 @@ export default function Skills() {
 
       <FadeIn delay={0.15}>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-          {skillsByCategory[active].map(skill => (
+          {visible.map(skill => (
             <SkillCard key={skill.name} {...skill} />
           ))}
         </div>
